@@ -1,0 +1,79 @@
+.portfolio-card{
+	.list {
+		    margin-top: 15px;
+		.item {
+			/*text-align: left;
+			border: 1px solid #333;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			margin-bottom: 20px;
+			vertical-align: top;
+			padding: 8px 13px;*/
+			text-align: left;
+			border: 1px solid #333;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			vertical-align: top;
+			/*padding: 9px 13px 10px 14px;*/
+			padding: 11px 13px 11px 14px;
+			max-width: 280px;
+			margin: 0 auto 20px;
+			
+			.icon-holder {
+				position: absolute;
+				text-align: center;
+				margin-top:0;
+				top: 7px;
+				width: 30px;
+				height: 30px;
+				background: black;
+				border: 1px solid #333;
+				border-radius: 16px;
+				-moz-border-radius: 16px;
+				-webkit-border-radius: 16px;
+				b {
+					color: white;
+					font-size:30px;
+					line-height:1;
+					display: block;
+					height: 34px;
+					box-sizing: border-box;
+					padding: 2px 0 0;
+				}
+				
+				
+			}
+			
+			.icon-replace {
+				position: absolute;
+				text-align: center;
+				margin-top:0;
+				top: 7px;
+				width: 30px;
+				height: 30px;
+				background: transparent;
+				b {
+					color: white;
+					font-size:30px;
+					line-height:1;
+					display: block;
+					height: 34px;
+					box-sizing: border-box;
+					padding: 2px 0 0;
+				}
+				
+				
+			}
+
+			h2 {
+				font-size: 16px;
+				padding: 0px 0 0 40px;
+				display: block;
+				line-height: 1.4;
+				font-weight: 100 !important;
+			}
+		}
+	}
+}

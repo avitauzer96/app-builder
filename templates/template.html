@@ -1,0 +1,75 @@
+<ion-side-menus>
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-positive" align-title="center">
+			<ion-nav-back-button side="right" ng-click="goLatestNews()">
+			</ion-nav-back-button>
+
+			<ion-nav-buttons side="left" >
+				<button menu-toggle="left" class="button button-icon button-clear ion-navicon"></button>
+			</ion-nav-buttons>
+
+			<ion-nav-title>
+				<span class="navTitle responsive-sm">
+					{{navTitle}}
+				</span>
+			</ion-nav-title>
+
+			<ion-nav-buttons side="right">
+				<button class="button button-icon button-clear ion-search" ng-click="openModal('search')">
+				</button>
+			</ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view animation="slide-left-right"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left"  width="240" class="bar bar-dark">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">Menu</h1>
+        </ion-header-bar>
+        <ion-content class="item-dark">
+            <ion-item class="item item-divider item-black">
+                @@menuPrimaryHeading
+            </ion-item>
+            <ion-list>
+                <ion-item nav-clear menu-close href="#/app/news"
+                          class="item item-dark"
+                          ng-class="getMenuClass('last_news')">
+                    Latest
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/bookmarks"
+                          class="item item-dark" ng-class="getMenuClass('bookmarks')">
+                    Bookmarked
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/development" ng-show="devMode"
+                          class="item item-dark" ng-class="getMenuClass('development')">
+                    Development page
+                </ion-item>
+                <ion-item class="item item-dark item-icon-right" ng-click="toggleCategories()"
+                          ng-class="getMenuCategoriesClass()">
+                    Categories <i class="icon ion-ios-arrow-down" ng-if="!showCategoriesMenu"></i>
+                    <i class="icon ion-ios-arrow-up" ng-if="showCategoriesMenu"></i>
+                </ion-item>
+                <div ng-if="showCategoriesMenu && info" class="categoriesList">
+                    <ion-list>
+                        <ion-item class="item item-dark" menu-close nav-direction="forward"
+                                  href="#/app/news/category/{{category.cat_ID}}"
+                                  ng-click="openCategory()"
+                                  ng-class="getMenuClass('news/category/'+category.cat_ID)"
+                                  ng-repeat="category in categories">
+                            {{::category.name}} <span class="badge">{{::category.count}}</span>
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </ion-list>
+            <ion-item class="item item-divider item-black">
+                @@menuSecondaryHeading
+            </ion-item>
+            <ion-list >
+                <ion-item  ng-repeat="menu_item in info.additional_menu" nav-clear menu-close
+                          href="#/app/{{menu_item.url}}" class="item item-dark" ng-class="getMenuClass(menu_item.url)">
+                    {{::menu_item.menu_title}}
+                </ion-item>
+            </ion-list>
+
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

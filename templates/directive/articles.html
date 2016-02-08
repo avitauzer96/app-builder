@@ -1,0 +1,38 @@
+<div class="articles">
+    <div ng-show="articles.length == 0" class="content">
+        <div class="card not-found">
+            <h1>{{::emptyMessageTitle}}</h1>
+            <p>{{::emptyMessageText}}</p>
+        </div>
+        <div class="card nothing-found">
+            <h1>{{::emptyMessage}}</h1>
+        </div>
+    </div>
+
+    <div class="content" ng-class="'content-'+getColumnWidth()">
+        <div class="row">
+            <div class="col col-{{getColumnWidth()}}" ng-repeat="column in getColumns()">
+
+                <div class="card" ng-repeat="article in articles | separate:getCountColumn():column">
+
+                    <img ng-src="{{::article.img}}" width="100%" ng-click="openArticle($parent.$index+$index*getCountColumn())">
+
+                    <div class="desc">
+                        <h3 ng-click="openArticle($parent.$index+$index*getCountColumn())">{{::article.post_title}}</h3>
+						
+						<span>
+							<a ng-repeat="category in article.categories" class="category"  href="#/app/news/category/{{category.cat_ID}}"
+								ng-click="openCategory()" >{{category.name}}</a>
+								
+						</span>
+                        <div class="post_date">{{::article.post_date}}</div>
+
+                        <div class="bookmarked" ng-click="bookmark(article)" ng-class="{'active' : article.bookmarked}">
+                            <i class="icon ion-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

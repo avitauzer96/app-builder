@@ -1,0 +1,98 @@
+<ion-view>
+  <ion-content>
+    <div class="card contact-card" >
+        <div class="content" >
+            <div class="row  responsive-md pageTitle">
+                <h2 ng-click="tryEnableDevelopMode()">{{ title }}</h2>
+            </div>
+            <div ng-repeat="detail in info.details">
+                <div class="row  responsive-md">
+                    <div class="col"></div>
+                    <div class="col col-50">
+                        <h1 class="title">{{::info.trading_name}}</h1>
+                        <h2 class="subtitle">{{::detail.office_name}}</h2>
+                        <div class="list">
+                            <a class="item item-icon-left" ng-href="mailto:{{info.company_email}}">
+                                <div class="icon-holder">
+                                    <i class="ion-email"></i>
+                                </div>
+                                <h2>Email Us</h2>
+                            </a>
+                            <a class="item item-icon-left"
+                               ng-href="{{info.company_website | trustAsUrl}}" ext-link>
+                                <div class="icon-holder">
+                                    <i class="ion-information"></i>
+                                </div>
+                                <h2>Visit Website</h2>
+                            </a>
+                            <a class="item item-icon-left" ng-href="tel:{{detail.company_mobile}}">
+                                <div class="icon-holder">
+                                    <i class="ion-android-phone-portrait"></i>
+                                </div>
+                                <h2>{{detail.company_mobile}}</h2>
+                            </a>
+                            <a class="item item-icon-left" ng-href="http://maps.google.com/maps?q={{detail.company_address | htmlToPlaintext}}" ext-link>
+                                <div class="icon-holder">
+                                    <i class="ion-ios-home"></i>
+                                </div>
+                                <h2 ng-bind-html="detail.company_address" ></h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row  responsive-md google-map" ng-hide="offline">
+                    <div class="col">
+                        <a ng-href="http://maps.google.com/maps?q={{detail.company_address | htmlToPlaintext}}" ext-link>
+                            <img ng-src="{{detail.google_map_img | trustAsResourceUrl}}" />
+                        </a>
+                    </div>
+                </div>
+                <div class="row responsive-md social">
+                    <div class="col">
+                        <ul>
+                            <li class="icon-holder icon-twitter" ng-if="::info.socials.feedsy_twitter">
+                                <a target="_blank" ng-href=" {{::info.socials.feedsy_twitter | trustAsUrl}}" ext-link>
+                                    <i class="ion-social-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="icon-holder icon-youtube" ng-if="::info.socials.feedsy_youtube">
+                                <a target="_blank" ng-href="{{::info.socials.feedsy_youtube | trustAsUrl}}" ext-link>
+                                    <i class="ion-social-youtube"></i>
+                                </a>
+                            </li>
+                            <li class="icon-holder icon-linkedin" ng-if="::info.socials.feedsy_linkedin">
+                                <a target="_blank" ng-href="{{::info.socials.feedsy_linkedin | trustAsUrl}}" ext-link>
+                                    <i class="ion-social-linkedin"></i>
+                                </a>
+                            </li>
+                            <li class="icon-holder icon-google-plus" ng-if="::info.socials.feedsy_googleplus">
+                                <a target="_blank" ng-href="{{::info.socials.feedsy_googleplus | trustAsUrl}}" ext-link>
+                                    <i class="ion-social-googleplus-outline"></i>
+                                </a>
+                            </li>
+                            <li class="icon-holder icon-facebook" ng-if="::info.socials.feedsy_facebook">
+                                <a target="_blank" ng-href="{{::info.socials.feedsy_facebook | trustAsUrl}}" ext-link>
+                                    <i class="ion-social-facebook"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row responsive-md join_us">
+                    <div class="col">
+                        <h3>Join Us</h3>
+                    </div>
+                </div>
+                <div class="row responsive-md add_to_contacts">
+                    <div class="col">
+                        <button class="button button-border" ng-disabled="addedToContacts" ng-click="addContacts(info.trading_name, detail.office_name, info.company_website, detail.company_mobile, detail.company_address, info.company_email)" >
+                            ADD TO CONTACTS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

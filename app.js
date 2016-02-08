@@ -1,0 +1,126 @@
+var express = require("express");
+var bodyParser = require("body-parser");
+var app = express();
+var gulp = require('gulp'),
+    requireDir = require('require-dir');
+    requireDir('./gulp-tasks');
+var jsonfile = require('jsonfile');
+var fs = require('fs');
+var http = require('http');
+var url = require('url');
+var cors = require('cors');
+
+var deleteFolderRecursive = function(path) {
+  if( fs.existsSync(path) ) {
+    fs.readdirSync(path).forEach(function(file,index){
+      var curPath = path + "/" + file;
+      if(fs.lstatSync(curPath).isDirectory()) {
+        deleteFolderRecursive(curPath);
+      } else {
+        fs.unlinkSync(curPath);
+      }
+    });
+
+    fs.rmdirSync(path);
+  }
+};
+
+var download_file_httpget = function(file_url, type, data) {
+var options = {
+    host: url.parse(file_url).host,
+    port: 80,
+    path: url.parse(file_url).pathname
+};
+
+var file_name = url.parse(file_url).pathname.split('/').pop();
+var file_extension = file_name.split('.').pop();
+var file = fs.createWriteStream('./resources/' + type + '.' + file_extension);
+
+http.get(options, function(res) {
+    res.on('data', function(data) {
+            file.write(data);
+        }).on('end', function() {
+            file.end();
+            console.log(file_name + ' downloaded to ' + 'DOWNLOAD_DIR');
+        });
+    });
+};
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//app.get('/',function(req,res){
+//  res.sendfile("index.html");
+//});
+
+app.post('/build',function(req,res){
+  var data = prepareData(req.body);
+  var resourcesDir = './resources';
+  var versionFile = './versions/' + data.appName + ".json";
+  
+  if (fs.existsSync(resourcesDir)){
+    deleteFolderRecursive(resourcesDir);
+  }
+  
+  fs.mkdirSync(resourcesDir);
+  
+  download_file_httpget(data.icon, 'icon');
+  download_file_httpget(data.splashScreenBackgroundImg, 'splashbg');
+  download_file_httpget(data.splashScreenLogo, 'splashlogo');
+  
+  if (!fs.existsSync(versionFile)){
+      var ver = {
+        version: "2.0.1"
+      }
+      jsonfile.writeFileSync(versionFile, ver);
+  }
+  
+  
+  jsonfile.writeFileSync('config.json', data);
+  gulp.start('phonegap-build');
+
+  // res.status(404);
+   res.end('yes');
+});
+
+app.post('/check', function(req, res){
+  var result = require('./config.json');
+
+  res.json(result);
+
+});
+
+app.listen(3000,function(){
+  console.log("Started on PORT 3000");
+});
+
+function prepareData(data) {
+  var preparedData = {
+    apiURL: data['feedsysettings[app_console][phonegap_apiUrl]'],
+    appId: data['feedsysettings[app_console][phonegap_appId]'],
+    token: data['feedsysettings[app_console][phonegap_token]'],
+    appName: data['feedsysettings[app_console][phonegap_appName]'],
+    appDescription: data['feedsysettings[app_console][phonegap_appDescription]'],
+    appGoogleAnalytics: data['feedsysettings[app_console][phonegap_googleAnalytics]'],
+    appPath: data['feedsysettings[app_console][phonegap_appPath]'],
+    menuPrimaryHeading: data['feedsysettings[app_console][primary_menu_heading]'],
+    menuSecondaryHeading: data['feedsysettings[app_console][secondary_menu_heading]'],
+    appGoogleProjectId: data['feedsysettings[app_console][phonegap_gc]'],
+    appPushWooshId: data['feedsysettings[app_console][phonegap_pushwoosh]'],
+    headerColor: data['feedsysettings[app_console][header_bar_text_color]'],
+    headerBarColor: data['feedsysettings[app_console][header_bar_color]'],
+    headerBackgroundColor: data['feedsysettings[app_console][header_background_color]'],
+    splashScreenBackground: data['feedsysettings[app_console][splash_screen_background_color]'],
+    splashScreenTextColor: data['feedsysettings[app_console][phonegap_splashscreen_watermark_color]'],
+    splashScreenLogo: data['feedsysettings[app_console][phonegap_splashscreen]'],
+    splashScreenBackgroundImg: data['feedsysettings[app_console][phonegap_splashscreen_background_img]'],
+    icon: data['feedsysettings[app_console][phonegap_icon]'],
+    androidCertificatePassword: data['feedsysettings[app_console][phonegap_androidCertificatePassword]'],
+    androidKeystorePassword: data['feedsysettings[app_console][phonegap_androidKeystorePassword]'],
+    iosKeyPassword: data['feedsysettings[app_console][phonegap_iosKeyPassword]'],
+    status: 'Data processing...',
+    isEnd: false
+  };
+  
+  return preparedData;
+}

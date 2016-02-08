@@ -1,0 +1,17 @@
+<ion-view>
+    <ion-content>
+        <div class="card page" >
+            <div class="content" >
+                <div class="row title responsive-md">
+                    <div class="col">
+                        <h2>{{::page.title}}</h2>
+                    </div>
+                </div>
+                <div class="row text responsive-md page-text">
+                    <div class="col" ng-bind-html="::page.content | trustAsHTML"></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

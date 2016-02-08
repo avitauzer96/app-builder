@@ -1,0 +1,32 @@
+.button-border {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-color: black;
+	color: black;
+	text-transform: uppercase;
+	&:hover{
+		color: black;
+	}
+}
+.button-border-small {
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-color: black;
+	color: black;
+	text-transform: uppercase;
+	&:hover{
+		color: black;
+	}
+}
+.get_more{
+	padding: 7px 0 37px;
+
+	button{
+		width: 100px;
+	}
+}
+.bar.bar-positive .title {
+	color: $light;
+}

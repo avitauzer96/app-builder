@@ -1,0 +1,76 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+
+$stable: #f8f8f8;
+$positive: @@headerBarColor;
+$headerBackgroundColor: @@headerBackgroundColor;
+$calm: #11c1f3;
+$balanced: #33cd5f;
+$energized: #ffc900;
+$assertive: #ef473a;
+$royal: #886aea;
+$dark: #333;
+
+$button-stable-text: #fff;
+$button-dark-border: #666;
+$button-dark-active-bg: #666;
+$button-dark-active-border: #666;
+
+$item-border-width: 1px;
+
+$bar-height: 56px;
+
+$grid-padding-width: 0px;
+
+$ios-transition-duration: 0.5s;
+$android-transition-duration: 0.5s;//320ms
+
+$font-family-sans-serif:         "Roboto", "Segoe UI", sans-serif !default;
+$font-family-light-sans-serif:   "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
+// Include all of Ionic
+@import "../www/lib/ionic/scss/ionic";
+
+@import "main";
+@import "nav-footer";
+@import "articles";
+@import "page";
+@import "article";
+@import "menu";
+@import "search";
+@import "contact";
+@import "news";
+@import "portfolio";
+@import "categories";
+@import "buttons";
+
+.slide-in-up.ng-enter,
+.slide-in-up > .ng-enter {
+  @include transition-delay(1s);
+  @include transition-duration(1s)
+}
+.slide-in-up.ng-leave,
+.slide-in-up > .ng-leave {
+  @include transition-delay(1s);
+  @include transition-duration(1s);
+}
+.navTitle {
+  color: @@headerBarTextColor;
+}

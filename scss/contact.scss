@@ -1,0 +1,214 @@
+.contact-card {
+	img {
+		display: inline-block;
+	}
+	.list {
+		padding: 0 4px 0 0;
+		overflow: hidden;
+		.item {
+			text-align: left;
+			border: 1px solid #333;
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			vertical-align: top;
+			padding: 11px 13px 11px 14px;
+			max-width: 280px;
+			margin: 0 auto 20px;
+			.icon-holder {
+				position: absolute;
+				top: 7px;
+				margin-top:0;
+				width: 30px;
+				height: 30px;
+				background: black;
+				border: 1px solid #333;
+				border-radius: 16px;
+				-moz-border-radius: 16px;
+				-webkit-border-radius: 16px;
+				i {
+					color: white;
+				}
+			}
+
+			h2 {
+				font-size: 16px;
+				margin: 0px 0 0 40px;
+				display: block;
+				line-height: 1.4;
+				font-weight: 100 !important;
+			}
+			.icon-holder i{
+				&.ion-email:before{
+					font-size: 16px;
+					line-height: 19px;
+				}
+				&.ion-information:before{
+					font-size: 20px;
+					line-height: 22px;
+				}
+				&.ion-android-phone-portrait:before{
+					font-size: 22px;
+					line-height: 22px;
+				}
+				&.ion-ios-home:before{
+					font-size: 21px;
+					line-height: 20px;
+				}
+			}
+		}
+	}
+	.icon-holder {
+		display: block;
+		width: 32px;
+		height: 32px;
+		float: left;
+		text-align: center;
+		padding-top: 4px;
+		i {
+			font-size: 24px;
+		}
+	}
+	.title {
+		font-weight: 400;
+		font-family: Helvetica;
+		text-align: left;
+		font-size: 24px;
+		margin: 3px auto 0;
+		margin-top: 15px;
+		max-width: 280px;
+	}
+	.subtitle {
+		text-align: left;
+		margin: 25px auto 24px;
+		font-weight: bold;
+		font-size: 16px;
+		max-width: 280px;
+		font-family: Helvetica;
+	}
+
+	.social {
+		margin-top: 40px;
+		padding: 0;
+		.col {
+			text-align: center;
+			height: 36px;
+			ul{
+				display: inline-block;
+				height: 32px;
+			}
+		}
+		.col > * {
+			display: inline-block;
+		}
+		li {
+			font-size: 24px;
+			text-align:center;
+			vertical-align: middle;
+			display: inline-block;
+			margin-left: 4px;
+			margin-right: 4px;
+			width: 38px;
+			height: 38px;
+			padding: 0;
+			a{
+				display: block;
+				height: 38px;
+			}
+			@media screen and (max-width: 330px){
+				margin-right: 3px;
+				margin-left: 3px;
+			}
+		}
+		.icon-twitter {
+			background: #2695dd;
+		}
+		.icon-youtube {
+			background: #e81b2a;
+		}
+		.icon-linkedin {
+			background: #0d598d;
+		}
+        .icon-google-plus {
+          background: #d13e2c;
+        }
+        .icon-facebook {
+          background: #0d598d;
+        }
+		.icon-holder {
+			i {
+				color: white;
+				display: block;
+				height: 38px;
+				&.ion-social-twitter:before{
+					font-size: 23px;
+					line-height: 38px;
+					height: 38px;
+				}
+				&.ion-social-youtube:before{
+					line-height: 38px;
+					height: 38px;
+					font-size: 23px;
+				}
+				&.ion-social-linkedin:before{
+					line-height: 38px;
+					height: 38px;
+					font-size: 20px;
+				}
+				&.ion-social-googleplus-outline:before{
+					line-height: 38px;
+					height: 38px;
+					font-size: 20px;
+				}
+				&.ion-social-facebook:before{
+					line-height: 38px;
+					font-size: 20px;
+					height: 38px;
+				}
+			}
+		}
+
+	}
+	.join_us {
+		.col {
+			text-align: center;
+		}
+		.col > * {
+			display: inline-block;
+			width: 100%;
+		}
+		h3 {
+			font-weight: bold;
+			word-wrap: normal;
+			font-size: 14px;
+			padding: 7px 0 0;
+			font-family: Helvetica;
+		}
+	}
+	.add_to_contacts {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		.col {
+			text-align: center;
+		}
+		.col > * {
+			display: inline-block;
+		}
+	}
+	.google-map{
+		padding: 0 2%;
+		a{
+			display: block;
+			img{
+				display: block;
+				margin: 0 auto;
+				max-width: 100%;
+				height: auto;
+			}
+		}
+	}
+	
+	.item h2 {
+		white-space: normal !important;
+	}
+}

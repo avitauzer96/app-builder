@@ -1,0 +1,21 @@
+.nav-footer{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	button:first-of-type{
+		margin-right: 6px;
+	}
+	button:last-of-type{
+		margin-left: 6px;
+	}
+	button{
+		min-height: 37px;
+		line-height: 37px;
+	}
+	.col {
+		text-align: center;
+	}
+	.col > * {
+		display: inline-block;
+		text-transform: uppercase;
+	}
+}

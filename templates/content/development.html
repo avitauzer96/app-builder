@@ -1,0 +1,75 @@
+<ion-view>
+    <ion-content>
+        <div class="card" style="padding:0;">
+            <div class="item item-divider">
+                Application
+            </div>
+            <div class="item item-text-wrap">
+                Name: {{app_name}}<br>
+                Version: {{app_version}}<br>
+                API: {{app_url}}<br>
+                path: {{app_path}}
+            </div>
+        </div>
+        <div class="card" style="padding:0;">
+            <div class="item item-divider">
+                Display
+            </div>
+            <div class="item item-text-wrap">
+                isMobile:{{isMobile}}<br>
+                isTablet:{{isTablet}}<br>
+                screenSize:{{getScreenSize()}}<br>
+                innerSize:{{getInnerSize()}}<br>
+                isLandscape: {{isLandscape}}<br>
+                isPortrait: {{isPortrait}}
+            </div>
+        </div>
+        <div class="card" style="padding:0;">
+            <div class="item item-divider">
+                Pushwoosh notifications
+            </div>
+            <div class="item item-text-wrap">
+                Google project id: {{google_project_id}}<br>
+                Pushwoosh app id: {{pushwoosh_app_id}}<br>
+                Pushwoosh token: {{pushwoosh_token}}<br>
+                Log:<br>
+                <div>
+                    <div ng-repeat="log in pushwoosh_logs">{{log}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="padding:0;">
+            <div class="item item-divider">
+                Google Analytics
+            </div>
+            <div class="item item-text-wrap">
+                Loaded: {{plugins.ga.loaded}}<br>
+            </div>
+        </div>
+        <div class="card" style="padding:0;">
+            <div class="item item-divider">
+                Connection
+            </div>
+            <div class="item item-text-wrap">
+                Online: {{online}}<br>
+                Offline: {{offline}}<br>
+            </div>
+        </div>
+        <div class="card" style="padding:0;">
+            <div class="item item-divider">
+                Device
+            </div>
+            <div class="item item-text-wrap">
+                Available: {{device.available}}<br>
+                Model: {{device.model}}<br>
+                Platform: {{device.platform}}<br>
+                Version: {{device.version}}<br>
+                Uuid: {{device.uuid}}<br>
+                Cordova: {{device.cordova}}<br>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
+
+

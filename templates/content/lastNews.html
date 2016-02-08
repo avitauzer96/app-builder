@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-content class="news">
+        
+        <!-- <ion-slides autoplay="true">
+			<ion-slide-page ng-repeat="slide in info.slides">
+				<img ng-src="{{slide.img}}" />
+			</ion-slide-page>
+		</ion-slides>
+		-->
+		<ion-slide-box ng-if="info" on-slide-changed="slideHasChanged($index)"   does-continue="true">
+			<ion-slide ng-repeat="slide in info.slides" class="no-animate">
+                <div class="box">
+                    <img ng-src="{{slide.img}}" />
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+        <ion-refresher pulling-text="Pull down to refresh" on-refresh="doRefresh()"></ion-refresher>
+        <articles></articles>
+        <more></more>
+    </ion-content>
+</ion-view>

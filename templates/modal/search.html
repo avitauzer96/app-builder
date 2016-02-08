@@ -1,0 +1,23 @@
+<div class="search-modal" ng-controller="searchModalCtrl">
+    <div class="backdrop visible active"></div>
+    <div class="popup-container popup-showing active">
+        <div class="closeSearch">
+            <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal('search')">
+            </button>
+        </div>
+        <div class="popup">
+            <div class="popup-head">
+                <h3 class="popup-title ng-binding">SEARCH</h3>
+            </div>
+            <div class="popup-body">
+                <div class="list list-inset">
+                    <label class="item item-input">
+                        <input type="text" ng-model="query" ng-enter="searchRequest()">
+                    </label>
+                </div>
+                 <button class="btn-search icon-left ion-search" ng-class="{'active': query}" ng-click="searchRequest()"></button>
+            </div>
+            <div class="popup-buttons ng-hide"></div>
+        </div>
+    </div>
+</div>

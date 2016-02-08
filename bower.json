@@ -1,0 +1,13 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4",
+    "ngCordova": "*",
+    "ionic-service-core": "*",
+    "ionic-service-deploy": "~0.0.5",
+    "ionic-service-push": "*",
+    "ionic-service-analytics": "*",
+    "ionic-ion-imageCacheFactory":"andrewmcgivery/ionic-ion-imageCacheFactory"
+  }
+}

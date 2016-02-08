@@ -1,0 +1,85 @@
+<ion-view>
+
+    <ion-content on-swipe-left="nextArticle()" on-swipe-right="prevArticle()" ng-cloak>
+        <div class="card article" >
+            <div class="content" >
+                <div class="row img responsive-md post-img">
+                    <div class="col">
+                        <div ng-switch="article.type">
+                            <div ng-switch-when="content_video">
+                                <iframe ng-src="{{article.youtube | trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <div ng-switch-default class="article-img">
+                                <img src="{{::article.img}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row title responsive-md">
+                    <div class="col">
+                        <h2>{{article.post_title}}</h2>
+                    </div>
+                </div>
+                <div class="row post_date responsive-md">
+                    <div class="col date">
+                        {{article.post_date}}
+                    </div>
+                </div>
+
+                <div class="row text responsive-md">
+                    <div class="col" ng-bind-html="article.post_content | trustAsHTML"></div>
+                </div>
+                <div class="row responsive-md share">
+                    <div class="col">
+                        <button class="button button-border" ng-click="share()">
+                            SHARE THIS
+                        </button>
+						<!--
+                        <button class="button button-border" ng-click="shareViaEmail()">
+                            SHARE THIS VIA EMAIL
+                        </button>
+						-->
+                    </div>
+                </div>
+                <div class="row responsive-sm actions">
+                    <div class="col">
+                        <div class="action" ng-click="like(article)" ng-class="{'active' : article.liked}">
+                            <i class="icon ion-android-favorite-outline"></i>
+                            <span class="counter">{{article.likes}}</span><br>
+                            <div class="context">Like This</div>
+                        </div>
+                        <div class="action" ng-click="bookmark(article, content)" ng-class="{'active' : article.bookmarked}">
+                            <i class="icon ion-bookmark"></i><br>
+                            <div class="context">Bookmark</div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row responsive-md categories">
+                    <div class="col">
+                        <b>Categories:</b>
+						<span ng-repeat="category in article.categories">
+							<a href="#/app/news/category/{{category.cat_ID}}"
+								ng-click="openCategory()" >{{category.name}}</a>{{$last ? '' : ',&nbsp;'}}
+						</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-footer">
+            <div class="row responsive-md">
+                <div class="col">
+                    <a nav-direction="back" ng-href="#/app/news/article/{{prevID}}" ng-show="havePrev" ng-click="prev()">
+                        <button class="button button-border-small">Prev</button>
+                    </a>
+                    <a nav-direction="forward" ng-href="#/app/news/article/{{nextID}}" ng-show="haveNext" ng-click="next()">
+                        <button class="button button-border-small">Next</button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>
+

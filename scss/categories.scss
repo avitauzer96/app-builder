@@ -1,0 +1,18 @@
+.categories{
+	.item{
+		border-bottom: 3px solid black;
+		color: black;
+		.row{
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+		&:last-of-type{
+			border-bottom: 2px solid black;
+		}
+	}
+
+	.counter{
+		float: right;
+		color: #878787;
+	}
+}

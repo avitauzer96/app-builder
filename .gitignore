@@ -1,0 +1,8 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+.idea/
+tmp/android.apk
+tmp/ios.ipa
+phonegap_build.json
+node_modules
+gulp.sh

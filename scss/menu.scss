@@ -1,0 +1,108 @@
+// Header menu
+.bar-positive.bar.bar-header{
+	border: none;
+	text-align: center;
+	padding: 10px 25px 10px 20px;
+	.title{
+		font-size: 19px;
+		line-height: 38px;
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 !important;
+		font-weight: 100;
+		padding: 8px 15px;
+		.navTitle{
+			font-size: 19px;
+			line-height: 24px;
+			font-weight: normal;
+
+		}
+		.nav-bar-title{
+			overflow: hidden;
+			// display: block;
+			.navTitle{
+				line-height: 22px;
+				display: block;
+				margin-top: 4px;
+			}
+		}
+	}
+	.button-icon.ion-navicon{
+		&:before{
+			font-size: 28px;
+			line-height: 28px;
+		}
+	}
+	.button-icon.ion-search{
+		margin: 0 15px 0 0;
+		&:before{
+			font-size: 24px;
+			line-height: 28px;
+			font-weight: normal;
+		}
+	}
+}
+
+.nav-bar-block{
+	.bar-positive.bar.bar-header{
+		position: relative;
+		.title{
+			top: auto;
+			bottom: 0;
+			height: 50px;
+		}
+	}
+}
+.bar-dark.menu{
+	.bar-positive.bar.bar-header{
+		
+		.title{
+			text-align: left;
+			top: auto;
+			bottom: 0;
+		}
+	}
+}
+//menu
+.item-black {
+	color: white;
+	background: #000;
+	border-color: #666;
+}
+
+.item-divider {
+	font-weight: bold;
+    line-height: 21px;
+    padding-top: ceil($item-padding / 4);
+    padding-bottom: ceil($item-padding / 4);
+	border: none;
+}
+
+.item-dark {
+	border-top-width: 0;
+	//border-bottom-width: 1px;
+	border-bottom: 2px solid #666;
+}
+
+.item-dark:last-of-type {
+	border-bottom: 1px solid #666;
+}
+
+//active menu item
+.item.active .item-content {
+	background: #666 !important;
+}
+.categoriesList{
+	.item{
+		padding-left: 20px;
+	}
+	.item-dark {;
+	//	border-bottom: 2px solid #666;
+	}
+	.badge{
+		color: white;
+		font-weight: 400;
+		font-size: 16px;
+		right: 16px;
+	}
+}
