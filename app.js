@@ -9,6 +9,7 @@ var fs = require('fs');
 var http = require('http');
 var url = require('url');
 var cors = require('cors');
+var Q = require('q');
 
 var deleteFolderRecursive = function(path) {
   if( fs.existsSync(path) ) {
@@ -35,25 +36,25 @@ var options = {
 var file_name = url.parse(file_url).pathname.split('/').pop();
 var file_extension = file_name.split('.').pop();
 var file = fs.createWriteStream('./resources/' + type + '.' + file_extension);
+var deferred = Q.defer();
 
 http.get(options, function(res) {
     res.on('data', function(data) {
             file.write(data);
         }).on('end', function() {
             file.end();
-            console.log(file_name + ' downloaded to ' + 'DOWNLOAD_DIR');
+        //    console.log(file_name + ' downloaded to ' + 'DOWNLOAD_DIR');
+            deferred.resolve(file_name);
         });
     });
+return deferred.promise;
 };
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//app.get('/',function(req,res){
-//  res.sendfile("index.html");
-//});
-
 app.post('/build',function(req,res){
+  console.log('123');
   var data = prepareData(req.body);
   var resourcesDir = './resources';
   var versionFile = './versions/' + data.appName + ".json";
@@ -63,10 +64,7 @@ app.post('/build',function(req,res){
   }
   
   fs.mkdirSync(resourcesDir);
-  
-  download_file_httpget(data.icon, 'icon');
-  download_file_httpget(data.splashScreenBackgroundImg, 'splashbg');
-  download_file_httpget(data.splashScreenLogo, 'splashlogo');
+
   
   if (!fs.existsSync(versionFile)){
       var ver = {
@@ -77,9 +75,26 @@ app.post('/build',function(req,res){
   
   
   jsonfile.writeFileSync('config.json', data);
-  gulp.start('phonegap-build');
 
-  // res.status(404);
+    download_file_httpget(data.icon, 'icon').then(function(){ 
+
+      console.log('icon downloaded');  
+      download_file_httpget(data.splashScreenLogo, 'splashlogo').then(function(){    
+          console.log('splashlogo downloaded');  
+          if(data.splashScreenBackgroundImg){
+            download_file_httpget(data.splashScreenBackgroundImg, 'splashbg').then(function(){
+            console.log('splashbg downloaded');  
+            gulp.start('phonegap-build');
+            });
+          }
+          else
+          {
+            gulp.start('phonegap-build');
+          }
+       });
+
+  });
+
    res.end('yes');
 });
 
