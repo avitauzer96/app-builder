@@ -108,17 +108,30 @@ app.listen(3000,function(){
   console.log("Started on PORT 3000");
 });
 
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+
 function prepareData(data) {
   var preparedData = {
     apiURL: data['feedsysettings[app_console][phonegap_apiUrl]'],
     appId: data['feedsysettings[app_console][phonegap_appId]'],
     token: data['feedsysettings[app_console][phonegap_token]'],
-    appName: data['feedsysettings[app_console][phonegap_appName]'],
-    appDescription: data['feedsysettings[app_console][phonegap_appDescription]'],
+    appName: escapeHtml(data['feedsysettings[app_console][phonegap_appName]']),
+    appDescription: escapeHtml(data['feedsysettings[app_console][phonegap_appDescription]']),
     appGoogleAnalytics: data['feedsysettings[app_console][phonegap_googleAnalytics]'],
     appPath: data['feedsysettings[app_console][phonegap_appPath]'],
-    menuPrimaryHeading: data['feedsysettings[app_console][primary_menu_heading]'],
-    menuSecondaryHeading: data['feedsysettings[app_console][secondary_menu_heading]'],
+    menuPrimaryHeading: escapeHtml(data['feedsysettings[app_console][primary_menu_heading]']),
+    menuSecondaryHeading: escapeHtml(data['feedsysettings[app_console][secondary_menu_heading]']),
     appGoogleProjectId: data['feedsysettings[app_console][phonegap_gc]'],
     appPushWooshId: data['feedsysettings[app_console][phonegap_pushwoosh]'],
     headerColor: data['feedsysettings[app_console][header_bar_text_color]'],
@@ -138,3 +151,5 @@ function prepareData(data) {
   
   return preparedData;
 }
+
+
