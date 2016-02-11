@@ -47,7 +47,7 @@
   gulp.task('concat_annotate_js', ['patch', 'clean_js', 'template_js'], function (done) {
     argv.status = 'Started js files concatenation...';
     jsonfile.writeFileSync('../config.json', argv);
-    var filePath = '../versions/'+ argv.appName + '.json';
+    var filePath = '../versions/'+ argv.appPath + '.json';
     gulp.src([
       './js/app.js',
       './js/decorators/*.js',

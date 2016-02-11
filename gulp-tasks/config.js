@@ -18,7 +18,7 @@
   gulp.task('config_xml', ['clean_config_xml', 'patch'], function () {
     argv.status = 'Started congiguring configuration xml...';
     jsonfile.writeFileSync('../config.json', argv);
-    var filePath = '../versions/'+ argv.appName + '.json';
+    var filePath = '../versions/'+ argv.appPath + '.json';
     var version =  require(filePath).version;
     var versionCode = version.split('.');
     return gulp.src(['./config.xml'])

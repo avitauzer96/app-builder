@@ -6,7 +6,7 @@
     argv = require('../config.json'),
     jsonfile = require('jsonfile');
   gulp.task('patch', function () {
-    var filePath = './versions/'+ argv.appName + '.json';
+    var filePath = './versions/'+ argv.appPath + '.json';
     argv.status = 'Started bumping app version...';
     jsonfile.writeFileSync('../config.json', argv);
     return gulp.src([filePath])

@@ -57,7 +57,7 @@ app.post('/build',function(req,res){
   console.log('123');
   var data = prepareData(req.body);
   var resourcesDir = './resources';
-  var versionFile = './versions/' + data.appName + ".json";
+  var versionFile = './versions/' + data.appPath + ".json";
   
   if (fs.existsSync(resourcesDir)){
     deleteFolderRecursive(resourcesDir);
