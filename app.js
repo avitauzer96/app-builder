@@ -73,7 +73,6 @@ app.post('/build',function(req,res){
   }
   
   
-  jsonfile.writeFileSync('config.json', data);
 
     download_file_httpget(data.icon, 'icon').then(function(){ 
 
@@ -83,6 +82,8 @@ app.post('/build',function(req,res){
           if(data.splashScreenBackgroundImg){
             download_file_httpget(data.splashScreenBackgroundImg, 'splashbg').then(function(){
             console.log('splashbg downloaded');  
+
+            jsonfile.writeFileSync('config.json', data);
             gulp.start('phonegap-build');
             });
           }
