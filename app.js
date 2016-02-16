@@ -5,11 +5,12 @@ var gulp = require('gulp'),
     requireDir = require('require-dir');
     requireDir('./gulp-tasks');
 var jsonfile = require('jsonfile');
-var fs = require('fs');
 var http = require('http');
 var url = require('url');
 var cors = require('cors');
 var Q = require('q');
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require('fs'));
 
 var deleteFolderRecursive = function(path) {
   if( fs.existsSync(path) ) {
@@ -43,7 +44,6 @@ http.get(options, function(res) {
             file.write(data);
         }).on('end', function() {
             file.end();
-        //    console.log(file_name + ' downloaded to ' + 'DOWNLOAD_DIR');
             deferred.resolve(file_name);
         });
     });
@@ -55,24 +55,28 @@ app.use(bodyParser.json());
 
 app.post('/build',function(req,res){
   var data = prepareData(req.body);
-  var resourcesDir = './resources';
-  var versionFile = './versions/' + data.appPath + ".json";
+  fs.writeFileAsync('./config.json', JSON.stringify(data), {}).then(function() {
+    console.log("succesfully written");
+    var resourcesDir = './resources';
+    var versionFile = './versions/' + data.appPath + ".json";
+    
+    if (fs.existsSync(resourcesDir)){
+      deleteFolderRecursive(resourcesDir);
+    }
   
-  if (fs.existsSync(resourcesDir)){
-    deleteFolderRecursive(resourcesDir);
-  }
-  
-  fs.mkdirSync(resourcesDir);
+    fs.mkdirSync(resourcesDir);
 
+    
+    if (!fs.existsSync(versionFile)){
+        var ver = {
+          version: "2.0.1"
+        }
+        jsonfile.writeFileSync(versionFile, ver);
+    }
   
-  if (!fs.existsSync(versionFile)){
-      var ver = {
-        version: "2.0.1"
-      }
-      jsonfile.writeFileSync(versionFile, ver);
-  }
   
-  
+
+  //jsonfile.writeFileSync('config.json', data);
 
     download_file_httpget(data.icon, 'icon').then(function(){ 
 
@@ -82,8 +86,6 @@ app.post('/build',function(req,res){
           if(data.splashScreenBackgroundImg){
             download_file_httpget(data.splashScreenBackgroundImg, 'splashbg').then(function(){
             console.log('splashbg downloaded');  
-
-            jsonfile.writeFileSync('config.json', data);
             gulp.start('phonegap-build');
             });
           }
@@ -93,6 +95,7 @@ app.post('/build',function(req,res){
           }
        });
 
+    });
   });
 
    res.end('yes');
