@@ -55,6 +55,7 @@ app.use(bodyParser.json());
 
 app.post('/build',function(req,res){
   var data = prepareData(req.body);
+  fs.unlinkSync('./config.json');
   fs.writeFileAsync('./config.json', JSON.stringify(data), {}).then(function() {
     console.log("succesfully written");
     var resourcesDir = './resources';

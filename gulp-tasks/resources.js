@@ -24,7 +24,7 @@
             'rm -rf tmp/res/*',
             'sh phonegap-watermark-generator.sh ' + watermark,
             'sh phonegap-icon-generator.sh resources/icon.png',
-            'sh phonegap-splash-generator.sh resources/splashlogo.png' + ' ' + argv.splashScreenBackground
+            'sh phonegap-splash-generator.sh resources/splashlogo.png' + ' "' + argv.splashScreenBackground + '"'
 
        ]));
    }
