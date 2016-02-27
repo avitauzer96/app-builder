@@ -7,7 +7,7 @@
 			</ion-slide-page>
 		</ion-slides>
 		-->
-		<ion-slide-box ng-if="info" on-slide-changed="slideHasChanged($index)"   does-continue="true">
+		<ion-slide-box ng-if="info" on-slide-changed="slideHasChanged($index)" auto-play="true" slide-interval="5000" does-continue="true">
 			<ion-slide ng-repeat="slide in info.slides" class="no-animate">
                 <div class="box">
                     <img ng-src="{{slide.img}}" />

@@ -14,8 +14,11 @@ angular.module('feedsyApp', [
   .constant('APP_NAME', '@@appName')
   .constant('APP_VERSION', '@@appVersion')
   .constant('API_URL', '@@apiURL')
-  .config(function ($logProvider) {
+  .config(function ($logProvider, $httpProvider) {
     $logProvider.debugEnabled(true);
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  
   })
   .config(function($ionicConfigProvider,$animateProvider) {
     $ionicConfigProvider.backButton.text('').icon('ion-home');
@@ -50,7 +53,7 @@ angular.module('feedsyApp', [
             disableBack: true,
             historyRoot: true
           });
-          $rootScope.navTitle = APP_NAME + ' News';
+          $rootScope.navTitle = APP_NAME;
         }
       })
       .state('app.article', {
@@ -63,7 +66,7 @@ angular.module('feedsyApp', [
           }
         },
         onEnter: function ($rootScope) {
-          $rootScope.navTitle = APP_NAME + ' News';
+          $rootScope.navTitle = APP_NAME;
         }
       })
       .state('app.category', {
@@ -115,7 +118,7 @@ angular.module('feedsyApp', [
         templateUrl: "templates/content/contact.html",
         controller: 'contactCtrl',
         onEnter: function ($rootScope) {
-          $rootScope.navTitle = APP_NAME + ' News';
+          $rootScope.navTitle = APP_NAME;
         }
       })
       .state('app.portfolio', {
@@ -123,7 +126,7 @@ angular.module('feedsyApp', [
         templateUrl: "templates/content/portfolio.html",
         controller: 'portfolioCtrl',
         onEnter: function ($rootScope) {
-          $rootScope.navTitle = APP_NAME + ' News';
+          $rootScope.navTitle = APP_NAME;
         }
       })
       .state('app.development', {
@@ -139,7 +142,7 @@ angular.module('feedsyApp', [
         templateUrl: "templates/content/page.html",
         controller: 'pageCtrl',
         onEnter: function ($rootScope) {
-          $rootScope.navTitle = APP_NAME + ' News';
+          $rootScope.navTitle = APP_NAME;
         }
       });
 

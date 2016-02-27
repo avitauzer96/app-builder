@@ -3,12 +3,12 @@
 <widget xmlns="http://www.w3.org/ns/widgets"
 		xmlns:android   = "http://schemas.android.com/apk/res/android"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id="com.feedsy.@@appPath"
+		id="@@appPath"
 		versionCode = "20@@appVersionCode"
 		version="@@appVersion">
 
 	<gap:config-file platform="ios" parent="CFBundleIdentifier" overwrite="true">
-		<string>com.feedsy.@@appPath</string>
+		<string>@@appPath</string>
 	</gap:config-file>
 
 	<name>@@appName</name>

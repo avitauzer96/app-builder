@@ -47,6 +47,7 @@
   gulp.task('concat_annotate_js', ['patch', 'clean_js', 'template_js'], function (done) {
     argv.status = 'Started js files concatenation...';
     jsonfile.writeFileSync('../config.json', argv);
+    var appName = argv.appName.replace(/&amp;/g, '&');
     var filePath = '../versions/'+ argv.appPath + '.json';
     gulp.src([
       './js/app.js',
@@ -67,7 +68,7 @@
         patterns: [
           {
             match: 'appPath',
-            replacement: "com.feedsy." + argv.appPath
+            replacement: argv.appPath
           },
           {
             match: 'appVersion',
@@ -79,7 +80,7 @@
           },
           {
             match: 'appName',
-            replacement: argv.appName
+            replacement: appName
           },
           {
             match: 'appGoogleAnalytics',

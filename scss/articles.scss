@@ -3,13 +3,11 @@
 		.card{
 			padding: 0;
 			margin: 3px 3px 7px;
-			padding-top: 0px;
 		}
 		.row {
 			padding: 3%;
 			@media screen and (max-device-width: 480px){
 				padding: 23px;
-				padding-top: 0px;
 			}
 		}
 	}

@@ -22,6 +22,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $stable: #f8f8f8;
 $positive: @@headerBarColor;
 $headerBackgroundColor: @@headerBackgroundColor;
+$headerBarTextColor: @@headerBarTextColor;
 $calm: #11c1f3;
 $balanced: #33cd5f;
 $energized: #ffc900;
@@ -72,5 +73,8 @@ $font-family-light-sans-serif:   "Roboto-Light", "Segoe UI-Light", sans-serif-li
   @include transition-duration(1s);
 }
 .navTitle {
-  color: @@headerBarTextColor;
+  color: @@headerBarTextColor !important;
+}
+.bar.bar-positive {
+    background-color: @@headerBarColor !important;
 }
