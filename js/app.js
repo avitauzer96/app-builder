@@ -14,10 +14,8 @@ angular.module('feedsyApp', [
   .constant('APP_NAME', '@@appName')
   .constant('APP_VERSION', '@@appVersion')
   .constant('API_URL', '@@apiURL')
-  .config(function ($logProvider, $httpProvider) {
+  .config(function ($logProvider) {
     $logProvider.debugEnabled(true);
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   
   })
   .config(function($ionicConfigProvider,$animateProvider) {

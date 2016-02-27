@@ -26,9 +26,7 @@ angular.module('feedsyApp.factories.apiFactory', [
           $rootScope.online = true;
           $rootScope.offline = false;
           loadingFactory.hide();
-          console.log('data', data);
-          deferred.resolve(data);
-          //deferred.resolve(angular.fromJson(data));
+          deferred.resolve(angular.fromJson(data));
         })
         .error(function (data, status) {
           $rootScope.online = false;
