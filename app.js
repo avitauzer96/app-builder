@@ -98,7 +98,6 @@ app.post('/build',function(req,res){
     });
   });
   
-    console.log(require('./config.json'));
   });
 
    res.end('yes');
