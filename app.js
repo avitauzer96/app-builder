@@ -55,9 +55,8 @@ app.use(bodyParser.json());
 
 app.post('/build',function(req,res){
   var data = prepareData(req.body);
-  fs.unlinkSync('./config.json');
-  fs.writeFileAsync('./config.json', JSON.stringify(data), {}).then(function() {
-    console.log("succesfully written");
+  fs.unlink('./config.json',function () {
+    fs.writeFileAsync('./config.json', JSON.stringify(data), {}).then(function() {
     var resourcesDir = './resources';
     var versionFile = './versions/' + data.appPath + ".json";
     
@@ -97,6 +96,9 @@ app.post('/build',function(req,res){
        });
 
     });
+  });
+  
+    console.log(require('./config.json'));
   });
 
    res.end('yes');

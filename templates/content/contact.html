@@ -25,7 +25,13 @@
                                 </div>
                                 <h2>Visit Website</h2>
                             </a>
-                            <a class="item item-icon-left" ng-href="tel:{{detail.company_mobile}}">
+                            <a class="item item-icon-left" ng-href="tel:{{detail.company_phone}}" ng-show="detail.company_phone">
+                                <div class="icon-holder">
+                                    <i class="ion-android-phone-portrait"></i>
+                                </div>
+                                <h2>{{detail.company_phone}}</h2>
+                            </a>
+                            <a class="item item-icon-left" ng-href="tel:{{detail.company_mobile}}" ng-show="detail.company_mobile">
                                 <div class="icon-holder">
                                     <i class="ion-android-phone-portrait"></i>
                                 </div>

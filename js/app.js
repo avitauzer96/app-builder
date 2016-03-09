@@ -148,7 +148,6 @@ angular.module('feedsyApp', [
     $urlRouterProvider.otherwise('/app/last_news');
   })
   .run(function ($ionicPlatform, $rootScope, $timeout, $ionicPopup, $ionicSlideBoxDelegate, $ionicHistory, $state, gaFactory) {
-     
     $rootScope.plugins = {};
     $rootScope.devMode = false;
 
