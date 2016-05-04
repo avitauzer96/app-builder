@@ -4,7 +4,7 @@ angular.module("feedsyApp.controllers.contactCtrl", ['ionic','feedsyApp.services
     var isIOS = ionic.Platform.isIOS();
     var isAndroid = ionic.Platform.isAndroid();
     $scope.addedToContacts = false;
-    $scope.addContacts = function (trading_name, office_name, company_website, company_mobile, company_address, company_email) {
+    $scope.addContacts = function (trading_name, office_name, company_website, company_phone, company_mobile, company_address, company_email) {
       var adress = String(company_address).replace(/<[^>]+>/gm, '');
       // create a new contact
       var contact = navigator.contacts.create();
@@ -16,6 +16,16 @@ angular.module("feedsyApp.controllers.contactCtrl", ['ionic','feedsyApp.services
       }
       //contact.displayName = trading_name;
      // contact.nickname = "nickname";
+      contact.phoneNumbers = [];
+
+      if (company_phone.length > 0) {
+        contact.phoneNumbers.push(new ContactField('work', company_phone, true));
+      }
+
+      if (company_mobile.length > 0) {
+        contact.phoneNumbers.push(new ContactField('mobile', company_mobile, true));
+      }
+
       contact.phoneNumbers = [new ContactField('work', company_mobile, true)];
       contact.emails = [new ContactField('work', company_email, false)];
       if(isAndroid) {
