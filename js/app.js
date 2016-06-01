@@ -202,6 +202,28 @@ angular.module('feedsyApp', [
     $log.debug('init appCtrl');
     modalService.init($scope);
 
+    document.addEventListener("pause", onPause, false);
+
+    function onPause() {
+       var iframe = document.getElementsByTagName("iframe");
+
+       if (typeof iframe != "undefined") {
+          for (i = 0; i < iframe.length; i++) {          
+              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' +   '","args":""}', '*');
+          }
+       }
+    }
+
+    $scope.$on("$ionicView.beforeLeave", function(event, data){
+       var iframe = document.getElementsByTagName("iframe");
+
+       if (typeof iframe != "undefined") {
+          for (i = 0; i < iframe.length; i++) {          
+              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' +   '","args":""}', '*');
+          }
+       }
+    });
+
     PushWooshService.onPushNotification = function(notification){
       if (device.platform == 'Android') {
         $ionicPopup.alert({
