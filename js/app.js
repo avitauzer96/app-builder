@@ -208,18 +208,20 @@ angular.module('feedsyApp', [
        var iframe = document.getElementsByTagName("iframe");
 
        if (typeof iframe != "undefined") {
-          for (i = 0; i < iframe.length; i++) {          
-              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' +   '","args":""}', '*');
+          for (i = 0; i < iframe.length; i++) {   
+              var func = 'pauseVideo';
+              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
           }
        }
     }
 
-    $scope.$on("$ionicView.beforeLeave", function(event, data){
+    $scope.$on("$ionicView.beforeLeave", function(event, data){ 
        var iframe = document.getElementsByTagName("iframe");
 
        if (typeof iframe != "undefined") {
-          for (i = 0; i < iframe.length; i++) {          
-              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' +   '","args":""}', '*');
+          for (i = 0; i < iframe.length; i++) {        
+              var func = 'pauseVideo';
+              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
           }
        }
     });
