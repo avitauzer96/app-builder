@@ -150,8 +150,9 @@ angular.module('feedsyApp', [
   .run(function ($ionicPlatform, $rootScope, $timeout, $ionicPopup, $ionicSlideBoxDelegate, $ionicHistory, $state, gaFactory) {
     $rootScope.plugins = {};
     $rootScope.devMode = false;
-
     $ionicPlatform.ready(function () {
+      document.addEventListener("deviceready", onDeviceReady, false);
+
 
       /*$rootScope.$on("$stateChangeSuccess", function handleRouteChangeEvent() {
         if ($state.current.name == 'app.last_news') {
@@ -192,6 +193,38 @@ angular.module('feedsyApp', [
       }
 
     });
+
+
+
+    function onDeviceReady(){
+      //Add Pause event listener for autolock
+      window.addEventListener("pause", onPause, false);
+
+      //Add Resume event listener for autolock
+      window.addEventListener("resume", onResume, false);
+
+    };
+
+    function onResume() {
+       var iframe = document.getElementsByTagName("iframe");
+       var func = 'playVideo';
+       if (typeof iframe != "undefined") {
+          for (i = 0; i < iframe.length; i++) {   
+              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
+          }
+       }
+    }
+
+    function onPause() {
+       var iframe = document.getElementsByTagName("iframe");
+       var func = 'pauseVideo';
+       if (typeof iframe != "undefined") {
+          for (i = 0; i < iframe.length; i++) {   
+              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
+          }
+       }
+    }
+    
   })
   .controller('appCtrl', function ($scope, $rootScope, $state, $window,  $location, $log, $ionicHistory,
                                    modalService, bookmarksService, $ionicSlideBoxDelegate, $ionicNavBarDelegate,
