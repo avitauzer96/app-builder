@@ -235,29 +235,6 @@ angular.module('feedsyApp', [
     $log.debug('init appCtrl');
     modalService.init($scope);
 
-    document.addEventListener("pause", onPause, false);
-
-    function onPause() {
-       var iframe = document.getElementsByTagName("iframe");
-
-       if (typeof iframe != "undefined") {
-          for (i = 0; i < iframe.length; i++) {   
-              var func = 'pauseVideo';
-              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
-          }
-       }
-    }
-
-    $scope.$on("$ionicView.beforeLeave", function(event, data){ 
-       var iframe = document.getElementsByTagName("iframe");
-
-       if (typeof iframe != "undefined") {
-          for (i = 0; i < iframe.length; i++) {        
-              var func = 'pauseVideo';
-              iframe[i].contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
-          }
-       }
-    });
 
     PushWooshService.onPushNotification = function(notification){
       if (device.platform == 'Android') {
