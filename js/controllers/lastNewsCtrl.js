@@ -12,7 +12,7 @@ angular.module("feedsyApp.controllers.lastNewsCtrl", [
     }
 
     $scope.articles = articles;
-    $scope.height = height;
+    $scope.height = height + 75;
     $scope.showMore = function () {
       return (articles.length % 18 == 0 && articles.length != 0);
     };

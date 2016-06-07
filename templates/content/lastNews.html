@@ -7,7 +7,7 @@
 			</ion-slide-page>
 		</ion-slides>
 		-->
-        <ion-scroll zooming="true" direction="y" style="width: 100%; height: {{height}}px" scrollbar-y="false" scrollbar-x="false">
+        <ion-scroll zooming="false" direction="y" style="width: 100%; height: {{height}}px" scrollbar-y="false" scrollbar-x="false">
 		<ion-slide-box ng-if="info" on-slide-changed="slideHasChanged($index)" auto-play="true" slide-interval="5000" does-continue="true">
 			<ion-slide ng-repeat="slide in info.slides" class="no-animate">
                 <div class="box">
