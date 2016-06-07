@@ -22,7 +22,8 @@ angular.module('feedsyApp', [
     $ionicConfigProvider.backButton.text('').icon('ion-home');
     $animateProvider.classNameFilter(/^((?!(no-animate)).)*$/);
   })
-  .config(function ($stateProvider, $urlRouterProvider, APP_NAME) {
+  .config(function ($stateProvider, $urlRouterProvider, APP_NAME, $windowProvider) {
+    console.log($windowProvider.$get().innerHeight);
     $stateProvider
       .state('app', {
         url: "/app",
@@ -42,7 +43,10 @@ angular.module('feedsyApp', [
         resolve: {
           articles: function (articlesService) {
             return articlesService.builder.last.get();
-          }
+          },
+          height: function() {
+            return $windowProvider.$get().innerHeight;
+          } 
         },
         onEnter: function ($rootScope, $ionicHistory) {
             

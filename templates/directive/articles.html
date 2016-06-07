@@ -11,7 +11,7 @@
 
     <div class="content" ng-class="'content-'+getColumnWidth()">
         <div class="row">
-            <div class="col col-{{getColumnWidth()}}" ng-repeat="column in getColumns()">
+            <div class="col col-{{getColumnWidth()}} " ng-repeat="column in getColumns()">
 
                 <div class="card" ng-repeat="article in articles | separate:getCountColumn():column">
 
